@@ -10,10 +10,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # 启动 MCP 服务器
-fastmcp run server.py
+fastmcp run minecraft_document_mcp/server.py
 
 # 开发模式（支持热重载）
-fastmcp dev server.py
+fastmcp dev minecraft_document_mcp/server.py
+
+# 命令行工具
+minecraft-doc-mcp
 ```
 
 ## 架构
@@ -21,12 +24,14 @@ fastmcp dev server.py
 ### 项目结构
 
 ```
-server.py                       # 入口文件（fastmcp 运行）
-src/mcp/
-├── cli.py                      # 命令行入口
-└── api/
-    ├── WikiApi.py              # Wiki API 请求工具
-    └── WikiItems.py            # 数据项定义 (CategoryItem)
+minecraft_document_mcp/
+├── __init__.py
+├── server.py                    # MCP 服务器入口
+└── src/
+    └── api/
+        ├── __init__.py
+        ├── WikiApi.py           # Wiki API 请求工具
+        └── WikiItems.py         # 数据项定义 (CategoryItem)
 ```
 
 ### 核心类

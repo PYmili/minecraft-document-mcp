@@ -53,7 +53,7 @@ source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate   # Windows
 
 # 安装依赖
-pip install beautifulsoup4 dataclasses-json fastmcp==3.1.1 lxml markdownify requests
+pip install -e .
 ```
 
 ## 使用方法
@@ -62,13 +62,12 @@ pip install beautifulsoup4 dataclasses-json fastmcp==3.1.1 lxml markdownify requ
 
 ```bash
 # 推荐：使用 fastmcp 运行
-fastmcp run server.py
+fastmcp run minecraft_document_mcp/server.py
 
 # 开发模式（支持热重载）
-fastmcp dev server.py
+fastmcp dev minecraft_document_mcp/server.py
 
 # 或使用安装后的命令行工具
-uv pip install -e .
 minecraft-doc-mcp
 ```
 
@@ -83,8 +82,7 @@ minecraft-doc-mcp
 {
   "mcpServers": {
     "minecraft-document": {
-      "command": "python",
-      "args": ["/path/to/minecraft-document-mcp/server.py"]
+      "command": "minecraft-doc-mcp"
     }
   }
 }
@@ -94,12 +92,13 @@ minecraft-doc-mcp
 
 ```
 minecraft-document-mcp/
-├── server.py                    # MCP 服务器入口（fastmcp 运行）
 ├── pyproject.toml               # 项目配置
-└── src/
-    └── mcp/
-        ├── cli.py               # 命令行入口
+└── minecraft_document_mcp/      # 主包
+    ├── __init__.py
+    ├── server.py                # MCP 服务器入口
+    └── src/
         └── api/
+            ├── __init__.py
             ├── WikiApi.py       # Wiki API 请求工具
             └── WikiItems.py     # 数据项定义
 ```

@@ -12,7 +12,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from markdownify import markdownify
 
-from src.mcp.api.WikiItems import CategoryItem
+from minecraft_document_mcp.src.api.WikiItems import CategoryItem
 
 # Wiki 基础地址
 API_HOST = "https://zh.minecraft.wiki/"
