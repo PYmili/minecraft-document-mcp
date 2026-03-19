@@ -9,10 +9,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 常用命令
 
 ```bash
-# 启动 MCP 服务器 (SSE 传输模式)
-python server.py
+# 启动 MCP 服务器
+fastmcp run server.py
 
-# 或者使用 fastmcp dev 开发模式
+# 开发模式（支持热重载）
 fastmcp dev server.py
 ```
 

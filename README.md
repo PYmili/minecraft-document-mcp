@@ -61,10 +61,10 @@ pip install beautifulsoup4 dataclasses-json fastmcp==3.1.1 lxml markdownify requ
 ### 启动服务器
 
 ```bash
-# SSE 传输模式
-python server.py
+# 推荐：使用 fastmcp 运行
+fastmcp run server.py
 
-# 或使用 fastmcp 开发模式
+# 开发模式（支持热重载）
 fastmcp dev server.py
 ```
 
