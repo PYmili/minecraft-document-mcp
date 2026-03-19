@@ -6,15 +6,20 @@ Minecraft Wiki API 请求工具模块。
 """
 
 import json
-from typing import Optional
+from typing import Optional, List
 
 import requests
 from bs4 import BeautifulSoup, Tag
 from markdownify import markdownify
 
+from src.mcp.api.WikiItems import CategoryItem
+
+API_HOST = "https://zh.minecraft.wiki/"
+
 # MediaWiki API 基础配置（获取 HTML 格式内容）
-API_HOST = (
-    "https://zh.minecraft.wiki/api.php"
+API_URL = (
+    API_HOST +
+    "api.php"
     "?action=query"
     "&format=json"
     "&prop=extracts|info"
@@ -72,7 +77,7 @@ class WikiApiRequestUtil:
     request: Optional[requests.Response] = None
 
     @staticmethod
-    def get_request_instance(url: str = API_HOST, method: str = 'GET') -> Optional[requests.Response]:
+    def get_request_instance(url: str = API_URL, method: str = 'GET') -> Optional[requests.Response]:
         """
         获取或创建 HTTP 请求实例（单例模式）。
 
@@ -126,7 +131,7 @@ class WikiApiRequestUtil:
         Returns:
             str: Markdown 格式的词条简介，未找到时返回提示信息。
         """
-        url = API_HOST + f'&exintro=true&titles={text}'
+        url = API_URL + f'&exintro=true&titles={text}'
         pages = WikiApiRequestUtil._get_json(url)
 
         if pages is None:
@@ -152,7 +157,7 @@ class WikiApiRequestUtil:
         Returns:
             str: 转换为 Markdown 格式的词条内容，获取失败时返回提示信息。
         """
-        url = API_HOST + f'&exintro=true&titles={text}'
+        url = API_URL + f'&exintro=true&titles={text}'
         pages = WikiApiRequestUtil._get_json(url)
 
         if pages is None:
@@ -205,3 +210,43 @@ class WikiApiRequestUtil:
             # remove_empty_tags(content)
 
             return markdownify(str(content))
+
+    @staticmethod
+    def get_category() -> List[dict]:
+        """
+        获取 Wiki 首页的主要分类列表。
+
+        从中文 Minecraft Wiki 首页抓取主要分类图标，
+        返回分类名称及其简介。
+
+        Returns:
+            List[dict]: 分类列表，每项包含:
+                - name: 分类名称
+                - description: 分类简介
+        """
+        result = []
+        with requests.get(API_HOST) as response:
+            if not response.ok:
+                return result
+
+            soup = BeautifulSoup(response.text, 'lxml')
+            # 定位首页主图标区域
+            main_icons = soup.find('div', class_='mp-icon-wrapper mp-main-icons')
+            if main_icons is None:
+                return result
+
+            # 遍历所有分类图标
+            for icon in main_icons.find_all('div', class_='mp-icon'):
+                link = icon.find('a')
+                if link is None:
+                    continue
+
+                title = link.attrs.get('title')
+                if title is None:
+                    continue
+
+                # 获取该分类的简介
+                intro = WikiApiRequestUtil.search_exintro(title)
+                result.append(CategoryItem(title, intro).to_dict())
+
+        return result

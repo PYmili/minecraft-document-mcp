@@ -7,7 +7,7 @@ Minecraft 文档 MCP 服务器入口模块。
 
 from fastmcp import FastMCP
 
-from src.mcp.request.WikiApiRequest import WikiApiRequestUtil
+from src.mcp.api.WikiApi import WikiApiRequestUtil
 
 mcp = FastMCP("minecraft-document-mcp")
 
@@ -42,6 +42,17 @@ class MinecraftDocumentMcp:
             str: Markdown 格式的完整词条内容。
         """
         return WikiApiRequestUtil.search(keyword)
+
+    @staticmethod
+    @mcp.tool
+    def get_wiki_categories() -> list[dict]:
+        """
+        获取 Wiki 首页的主要分类列表。
+
+        Returns:
+            list[dict]: 分类列表，每项包含 name 和 description 字段。
+        """
+        return WikiApiRequestUtil.get_category()
 
 
 if __name__ == "__main__":

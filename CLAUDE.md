@@ -22,21 +22,24 @@ fastmcp dev server.py
 
 ```
 server.py                       # 入口文件，定义 MCP 工具端点
-src/mcp/request/
-└── WikiApiRequest.py           # Wiki API 请求工具
+src/mcp/api/
+├── WikiApi.py                  # Wiki API 请求工具
+└── WikiItems.py                # 数据项定义 (CategoryItem)
 ```
 
 ### MCP 工具
 
-server.py 中定义了两个 MCP 工具：
+server.py 中定义了三个 MCP 工具：
 
 - `search_wiki_intro`: 搜索词条简介
 - `search_wiki_full`: 搜索词条完整内容
+- `get_wiki_categories`: 获取 Wiki 首页主要分类列表
 
-### WikiApiRequest 功能
+### WikiApi 功能
 
 - `search_exintro(text)`: 获取词条简介（Markdown 格式）
 - `search(text)`: 获取完整词条内容（Markdown 格式）
+- `get_category()`: 获取首页分类列表
 - 使用 BeautifulSoup 解析 HTML，markdownify 转换为 Markdown
 
 ## 依赖
@@ -47,3 +50,4 @@ server.py 中定义了两个 MCP 工具：
 - lxml
 - markdownify
 - requests
+- dataclasses-json

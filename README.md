@@ -9,6 +9,7 @@
 ## 功能特性
 
 - **Wiki 在线查询** - 从中文 Minecraft Wiki 获取词条内容
+- **分类浏览** - 获取 Wiki 首页主要分类列表
 - **简介/完整内容** - 支持获取词条简介或完整内容
 - **Markdown 输出** - 所有查询结果以 Markdown 格式返回
 - **MCP 协议支持** - 兼容 Model Context Protocol，可集成到 Claude Desktop 等客户端
@@ -19,6 +20,7 @@
 |---------|---------|
 | `search_wiki_intro` | 从 Wiki 搜索词条简介 |
 | `search_wiki_full` | 从 Wiki 搜索词条完整内容 |
+| `get_wiki_categories` | 获取 Wiki 首页主要分类列表 |
 
 ## 安装
 
@@ -51,7 +53,7 @@ source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate   # Windows
 
 # 安装依赖
-pip install beautifulsoup4 fastmcp==3.1.1 lxml markdownify requests dataclasses-json
+pip install beautifulsoup4 dataclasses-json fastmcp==3.1.1 lxml markdownify requests
 ```
 
 ## 使用方法
@@ -92,8 +94,9 @@ minecraft-document-mcp/
 ├── pyproject.toml               # 项目配置
 └── src/
     └── mcp/
-        └── request/
-            └── WikiApiRequest.py  # Wiki API 请求工具
+        └── api/
+            ├── WikiApi.py       # Wiki API 请求工具
+            └── WikiItems.py     # 数据项定义
 ```
 
 ## 依赖
@@ -103,6 +106,7 @@ minecraft-document-mcp/
 - [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/) - HTML 解析
 - [markdownify](https://github.com/matthewwithanm/python-markdownify) - HTML 转 Markdown
 - [lxml](https://lxml.de/) - XML/HTML 解析后端
+- [dataclasses-json](https://github.com/lidatong/dataclasses-json) - 数据类序列化
 
 ## 许可证
 
