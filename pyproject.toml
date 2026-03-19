@@ -1,6 +1,6 @@
 [project]
 name = "minecraft-document-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Minecraft Wiki 文档 MCP 服务器"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -12,3 +12,6 @@ dependencies = [
     "markdownify>=1.2.2",
     "requests>=2.32.5",
 ]
+
+[project.scripts]
+minecraft-doc-mcp = "server:main"

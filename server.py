@@ -57,3 +57,8 @@ class MinecraftDocumentMcp:
 
 if __name__ == "__main__":
     mcp.run()
+
+
+def main():
+    """MCP 服务器入口函数。"""
+    mcp.run()

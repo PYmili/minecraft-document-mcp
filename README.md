@@ -66,6 +66,10 @@ fastmcp run server.py
 
 # 开发模式（支持热重载）
 fastmcp dev server.py
+
+# 或使用安装后的命令行工具
+uv pip install -e .
+minecraft-doc-mcp
 ```
 
 ### 配置 Claude Desktop
