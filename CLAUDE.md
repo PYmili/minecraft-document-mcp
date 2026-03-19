@@ -27,20 +27,19 @@ src/mcp/api/
 └── WikiItems.py                # 数据项定义 (CategoryItem)
 ```
 
-### MCP 工具
+### 核心类
 
-server.py 中定义了三个 MCP 工具：
+| 类名 | 职责 |
+|-----|------|
+| `WikiApiClient` | HTTP 请求客户端，负责发送请求和处理响应 |
+| `ContentCleaner` | HTML 内容清理工具，移除冗余元素 |
+| `WikiApiRequestUtil` | 文档查询工具类，对外暴露的主要接口 |
+
+### MCP 工具
 
 - `search_wiki_intro`: 搜索词条简介
 - `search_wiki_full`: 搜索词条完整内容
 - `get_wiki_categories`: 获取 Wiki 首页主要分类列表
-
-### WikiApi 功能
-
-- `search_exintro(text)`: 获取词条简介（Markdown 格式）
-- `search(text)`: 获取完整词条内容（Markdown 格式）
-- `get_category()`: 获取首页分类列表
-- 使用 BeautifulSoup 解析 HTML，markdownify 转换为 Markdown
 
 ## 依赖
 

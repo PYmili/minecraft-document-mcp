@@ -27,7 +27,7 @@ class MinecraftDocumentMcp:
         Returns:
             str: Markdown 格式的词条简介。
         """
-        return WikiApiRequestUtil.search_exintro(keyword)
+        return WikiApiRequestUtil.search_intro(keyword)
 
     @staticmethod
     @mcp.tool
