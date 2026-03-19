@@ -21,10 +21,12 @@ fastmcp dev server.py
 ### 项目结构
 
 ```
-server.py                       # 入口文件，定义 MCP 工具端点
-src/mcp/api/
-├── WikiApi.py                  # Wiki API 请求工具
-└── WikiItems.py                # 数据项定义 (CategoryItem)
+server.py                       # 入口文件（fastmcp 运行）
+src/mcp/
+├── cli.py                      # 命令行入口
+└── api/
+    ├── WikiApi.py              # Wiki API 请求工具
+    └── WikiItems.py            # 数据项定义 (CategoryItem)
 ```
 
 ### 核心类

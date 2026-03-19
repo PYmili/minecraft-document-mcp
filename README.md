@@ -94,10 +94,11 @@ minecraft-doc-mcp
 
 ```
 minecraft-document-mcp/
-├── server.py                    # MCP 服务器入口
+├── server.py                    # MCP 服务器入口（fastmcp 运行）
 ├── pyproject.toml               # 项目配置
 └── src/
     └── mcp/
+        ├── cli.py               # 命令行入口
         └── api/
             ├── WikiApi.py       # Wiki API 请求工具
             └── WikiItems.py     # 数据项定义
