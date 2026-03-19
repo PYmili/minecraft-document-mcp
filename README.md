@@ -4,12 +4,12 @@
 [![FastMCP](https://img.shields.io/badge/FastMCP-3.1.1-green.svg)](https://github.com/jlowin/fastmcp)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-一个基于 FastMCP 框架的 Minecraft 文档 MCP 服务器，为 AI 助手提供 Minecraft 游戏文档查询功能。
+一个基于 FastMCP 框架的 Minecraft 文档 MCP 服务器，为 AI 助手提供中文 Minecraft Wiki 文档查询功能。
 
 ## 功能特性
 
-- **本地文档查询** - 查询本地存储的 Minecraft 文档（命令列表等）
 - **Wiki 在线查询** - 从中文 Minecraft Wiki 获取词条内容
+- **简介/完整内容** - 支持获取词条简介或完整内容
 - **Markdown 输出** - 所有查询结果以 Markdown 格式返回
 - **MCP 协议支持** - 兼容 Model Context Protocol，可集成到 Claude Desktop 等客户端
 
@@ -17,9 +17,6 @@
 
 | 工具名称 | 功能描述 |
 |---------|---------|
-| `get_available_info` | 获取本地文档的分类和版本信息 |
-| `get_all_partial_info` | 获取所有本地文档的摘要列表 |
-| `get_document_context` | 根据分类、版本、名称获取完整文档内容 |
 | `search_wiki_intro` | 从 Wiki 搜索词条简介 |
 | `search_wiki_full` | 从 Wiki 搜索词条完整内容 |
 
@@ -54,7 +51,7 @@ source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate   # Windows
 
 # 安装依赖
-pip install -r requirements.txt
+pip install beautifulsoup4 fastmcp==3.1.1 lxml markdownify requests dataclasses-json
 ```
 
 ## 使用方法
@@ -94,14 +91,9 @@ minecraft-document-mcp/
 ├── server.py                    # MCP 服务器入口
 ├── pyproject.toml               # 项目配置
 └── src/
-    ├── mcp/
-    │   ├── dto/                 # 数据传输对象
-    │   ├── entity/              # 实体类
-    │   ├── request/             # API 请求工具
-    │   ├── service/             # 服务层
-    │   └── utils/               # 工具类
-    └── resources/document/      # 本地文档存储
-        └── command/java/        # Java 版命令文档
+    └── mcp/
+        └── request/
+            └── WikiApiRequest.py  # Wiki API 请求工具
 ```
 
 ## 依赖
@@ -110,7 +102,7 @@ minecraft-document-mcp/
 - [requests](https://docs.python-requests.org/) - HTTP 请求库
 - [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/) - HTML 解析
 - [markdownify](https://github.com/matthewwithanm/python-markdownify) - HTML 转 Markdown
-- [dataclasses-json](https://github.com/lidatong/dataclasses-json) - 数据类序列化
+- [lxml](https://lxml.de/) - XML/HTML 解析后端
 
 ## 许可证
 
