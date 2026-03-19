@@ -2,8 +2,8 @@
   "$schema": "https://gofastmcp.com/public/schemas/fastmcp.json/latest.json",
   "source": {
     "type": "filesystem",
-    "path": "minecraft_document_mcp/server.py",
-    "entrypoint": "mcp"
+    "path": "server.py",
+    "entrypoint": "mcp_server"
   },
   "environment": {
     "type": "uv",

@@ -10,13 +10,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # 启动 MCP 服务器
-fastmcp run minecraft_document_mcp/server.py
+fastmcp run minecraft_document_mcp/cli.py
 
 # 开发模式（支持热重载）
-fastmcp dev minecraft_document_mcp/server.py
+fastmcp dev minecraft_document_mcp/cli.py
 
 # 命令行工具
-minecraft-doc-mcp
+minedoc
 ```
 
 ## 架构
@@ -26,7 +26,7 @@ minecraft-doc-mcp
 ```
 minecraft_document_mcp/
 ├── __init__.py
-├── server.py                    # MCP 服务器入口
+├── cli.py                       # MCP 服务器入口
 └── src/
     └── api/
         ├── __init__.py

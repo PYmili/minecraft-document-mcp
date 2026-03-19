@@ -62,13 +62,13 @@ pip install -e .
 
 ```bash
 # 推荐：使用 fastmcp 运行
-fastmcp run minecraft_document_mcp/server.py
+fastmcp run minecraft_document_mcp/cli.py
 
 # 开发模式（支持热重载）
-fastmcp dev minecraft_document_mcp/server.py
+fastmcp dev minecraft_document_mcp/cli.py
 
 # 或使用安装后的命令行工具
-minecraft-doc-mcp
+minedoc
 ```
 
 ### 配置 Claude Desktop
@@ -82,7 +82,7 @@ minecraft-doc-mcp
 {
   "mcpServers": {
     "minecraft-document": {
-      "command": "minecraft-doc-mcp"
+      "command": "minedoc"
     }
   }
 }
@@ -95,7 +95,7 @@ minecraft-document-mcp/
 ├── pyproject.toml               # 项目配置
 └── minecraft_document_mcp/      # 主包
     ├── __init__.py
-    ├── server.py                # MCP 服务器入口
+    ├── cli.py                   # MCP 服务器入口
     └── src/
         └── api/
             ├── __init__.py
