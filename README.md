@@ -16,10 +16,10 @@
 
 ## MCP 工具
 
-| 工具名称 | 功能描述 |
-|---------|---------|
-| `search_wiki_intro` | 从 Wiki 搜索词条简介 |
-| `search_wiki_full` | 从 Wiki 搜索词条完整内容 |
+| 工具名称                  | 功能描述             |
+|-----------------------|------------------|
+| `search_wiki_intro`   | 从 Wiki 搜索词条简介    |
+| `search_wiki_full`    | 从 Wiki 搜索词条完整内容  |
 | `get_wiki_categories` | 获取 Wiki 首页主要分类列表 |
 
 ## 安装
@@ -32,60 +32,36 @@
 ### 使用 uv 安装
 
 ```bash
-# 克隆仓库
-git clone https://github.com/PYmili/minecraft-document-mcp.git
-cd minecraft-document-mcp
-
-# 安装依赖
-uv sync
+uv add minecraft-document-mcp
 ```
 
 ### 使用 pip 安装
 
 ```bash
-# 克隆仓库
-git clone https://github.com/PYmili/minecraft-document-mcp.git
-cd minecraft-document-mcp
-
-# 创建虚拟环境
-python -m venv .venv
-source .venv/bin/activate  # Linux/macOS
-# .venv\Scripts\activate   # Windows
-
-# 安装依赖
-pip install -e .
+pip install minecraft-document-mcp
 ```
 
 ## 使用方法
 
 ### 启动服务器
 
+##### 使用 fastmcp 运行
 ```bash
-# 推荐：使用 fastmcp 运行
-fastmcp run minecraft_document_mcp/cli.py
-
+fastmcp run server.py
 # 开发模式（支持热重载）
-fastmcp dev minecraft_document_mcp/cli.py
-
-# 或使用安装后的命令行工具
-minedoc
+fastmcp dev server.py
 ```
 
-### 配置 Claude Desktop
+#### 使用安装后的命令行工具
 
-在 Claude Desktop 配置文件中添加：
+```bash
+# uvx 拉取
+uvx minecraft-document-mcp
+# minedoc 命令
+uvx minecraft-document-mcp minedoc
 
-**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "minecraft-document": {
-      "command": "minedoc"
-    }
-  }
-}
+# 配置 Claude Code
+claude mcp add --transport stdio --scope user minedoc "uvx --from minecraft-document-mcp minedoc" 
 ```
 
 ## 项目结构
